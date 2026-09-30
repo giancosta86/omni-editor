@@ -10,7 +10,7 @@ import javafx.stage.Stage
 
 import info.gianlucacosta.helios.concurrency.AtomicStringBuilder
 import info.gianlucacosta.helios.fx.dialogs.Alerts
-import info.gianlucacosta.helios.fx.dialogs.FileChooserExtensions._
+import info.gianlucacosta.helios.fx.Includes._
 
 import scalafx.Includes._
 import scalafx.beans.binding.Bindings
@@ -85,20 +85,20 @@ class MainWindowController {
         val titleBase = appStrategy.title
 
         val fileString =
-          workspace.documentFile.map(
+          workspace.documentFileOption.get.map(
             file => " - " + file.getName
           ).getOrElse(
             ""
           )
 
         val modifiedString =
-          if (workspace.modified) " *" else ""
+          if (workspace.modified.get) " *" else ""
 
         s"${titleBase}${fileString}${modifiedString}"
       },
 
-      workspace.documentFileProperty,
-      workspace.modifiedProperty
+      workspace.documentFileOption,
+      workspace.modified
     )
 
     setupMenusAndToolbar()
@@ -119,7 +119,7 @@ class MainWindowController {
     bindButton(openButton, openMenuItem)
 
 
-    saveMenuItem.disableProperty <== runningProperty || !workspace.modifiedProperty
+    saveMenuItem.disableProperty <== runningProperty || !workspace.modified
     bindButton(saveButton, saveMenuItem)
 
     saveAsMenuItem.disableProperty <== runningProperty
