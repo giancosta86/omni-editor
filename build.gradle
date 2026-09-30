@@ -1,16 +1,13 @@
 buildscript {
     repositories {
-        maven {
-            url 'https://dl.bintray.com/giancosta86/Hephaestus'
-        }
+        //TODO! Del this!
+        mavenLocal()
 
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
-        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.3'
-        classpath 'info.gianlucacosta.aurora:aurora:6.0'
+        classpath 'info.gianlucacosta.aurora:aurora:10.0.0-SNAPSHOT'
     }
 }
 
@@ -18,30 +15,24 @@ buildscript {
 apply plugin: 'scala'
 apply plugin: 'maven'
 apply plugin: 'osgi'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'info.gianlucacosta.moonlicense'
 apply plugin: 'info.gianlucacosta.aurora'
 
 
 group 'info.gianlucacosta.omnieditor'
 archivesBaseName = 'omnieditor'
-version '5.0'
+version '6.0.0-SNAPSHOT'
 
 
 description = 'Ready-made ScalaFX IDE for custom languages'
 
 
-
 dependencies {
-    generatedCompile 'org.scala-lang:scala-library:2.11.8'
-
     compile 'org.scala-lang:scala-library:2.11.8'
 
     compile 'org.fxmisc.richtext:richtextfx:0.6.10'
 
-    compile 'info.gianlucacosta.helios:helios-fx:5.0'
+    compile 'info.gianlucacosta.helios:helios-fx:7.0.0-SNAPSHOT'
 }
-
 
 
 aurora {
@@ -51,32 +42,5 @@ aurora {
         name = 'Gianluca Costa'
         email = 'gianluca@gianlucacosta.info'
         url = 'http://gianlucacosta.info/'
-    }
-
-    bintray {
-        repo = 'Hephaestus'
-        licenses = ['Apache-2.0']
-        labels = [
-                'custom languages',
-                'ready-made',
-                'IDE',
-                'code editor',
-                'syntax highlighting',
-                'ScalaFX',
-                'library',
-                'Scala',
-                'Java'
-        ]
-    }
-}
-
-
-moonLicense {
-    license = apache2
-
-    productInfo {
-        productName = 'OmniEditor'
-        inceptionYear = 2015
-        copyrightHolder = 'Gianluca Costa'
     }
 }
