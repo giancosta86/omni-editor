@@ -3,6 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>info.gianlucacosta.aurora</groupId>
+        <artifactId>scala-base</artifactId>
+        <version>10.0.0-SNAPSHOT</version>
+    </parent>
+
     <groupId>info.gianlucacosta.omnieditor</groupId>
     <artifactId>omnieditor</artifactId>
     <version>6.0.0-SNAPSHOT</version>
@@ -10,21 +16,7 @@
 
     <description>Ready-made ScalaFX IDE for custom languages</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <scala.version>2.11.8</scala.version>
-    </properties>
-
     <dependencies>
-        <!-- Core Scala Library -->
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.fxmisc.richtext</groupId>
             <artifactId>richtextfx</artifactId>
@@ -37,37 +29,4 @@
             <version>7.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <sourceDirectory>src/main/scala</sourceDirectory>
-        <!--<testSourceDirectory>src/test/scala</testSourceDirectory>-->
-
-        <plugins>
-            <!-- Standard Java Compiler Plugin -->
-            <!--<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-            </plugin>-->
-
-            <!-- Scala Compiler and Build Plugin -->
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>4.10.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                            <!--<goal>doc-jar</goal> -->
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                  <scalaVersion>${scala.version}</scalaVersion>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
